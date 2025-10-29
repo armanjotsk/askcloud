@@ -104,7 +104,7 @@ resource "aws_security_group" "public_sg" {
 
 # Instancia subred-1a
 resource "aws_instance" "ec2_a" {
-  ami           = "ami-052064a798f08f0d3"
+  ami           = "ami-07860a2d7eb515d9a"
   instance_type = "t3.micro"
   subnet_id     = aws_subnet.subred-1a.id
   key_name      = "vockey"
@@ -116,7 +116,7 @@ resource "aws_instance" "ec2_a" {
 
 # Instancia subred-1b
 resource "aws_instance" "ec2_b" {
-  ami           = "ami-052064a798f08f0d3"
+  ami           = "ami-07860a2d7eb515d9a"
   instance_type = "t3.micro"
   subnet_id     = aws_subnet.subred-1b.id
   key_name      = "vockey"
