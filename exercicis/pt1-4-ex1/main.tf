@@ -56,18 +56,18 @@ resource "aws_route_table" "tabla_rutas" {
 
 # Asociacion de tabla de rutas a las subredes
 resource "aws_route_table_association" "tabla_rutas_1" {
-  subnet_id      = aws_subnet.public_subnet_1a.id
+  subnet_id      = aws_subnet.subred-1a.id
   route_table_id = aws_route_table.tabla_rutas.id
 }
 resource "aws_route_table_association" "tabla_rutas_2" {
-  subnet_id      = aws_subnet.public_subnet_1b.id
+  subnet_id      = aws_subnet.subred-1b.id
   route_table_id = aws_route_table.tabla_rutas.id
 }
 
 # Security Group para las instancias públicas
 resource "aws_security_group" "public_sg" {
   name        = "VPC-03-Public-SG"
-  description = "Permite SSH desde cualquier lugar, ICMP dentro del VPC, y todo el tráfico saliente"
+  description = "Permite SSH desde cualquier lugar, ICMP dentro del VPC, y todo el trafico saliente"
   vpc_id      = aws_vpc.VPC-03.id
 
   # Permite SSH desde cualquier lugar
@@ -90,7 +90,7 @@ resource "aws_security_group" "public_sg" {
 
   # Todo el tráfico saliente
   egress {
-    description      = "Todo el tráfico saliente"
+    description      = "Todo el trafico saliente"
     from_port        = 0
     to_port          = 0
     protocol         = "-1"
