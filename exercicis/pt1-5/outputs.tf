@@ -1,5 +1,10 @@
 #ArmanjotSK outputs
 
+output "public_ids" {
+  description = "IDs de les instàncies públiques"
+  value       = [for instance in aws_instance.public_instances : instance.id]
+}
+
 output "public_ips" {
   description = "IPs públiques de les instàncies"
   value       = [for instance in aws_instance.public_instances : instance.public_ip]
@@ -8,16 +13,6 @@ output "public_ips" {
 output "private_ids" {
   description = "IDs de les instàncies privades"
   value       = [for instance in aws_instance.private_instances : instance.id]
-}
-
-output "vpc_id" {
-  description = "ID de la VPC"
-  value       = aws_vpc.main.id
-}
-
-output "sg_id" {
-  description = "ID del Security Group"
-  value       = aws_security_group.main_sg.id
 }
 
 output "bucket_name" {
