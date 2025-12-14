@@ -101,6 +101,14 @@ resource "aws_security_group" "private_sg" {
     security_groups = [aws_security_group.bastion_sg.id]
   }
 
+ingress {
+    description = "Comunicacion interna entre las subredes privadas"
+    from_port = 22
+    to_port = 22
+    protocol = "tcp"
+    self = true
+  }
+  
   egress {
     from_port   = 0
     to_port     = 0
