@@ -32,7 +32,6 @@ resource "aws_eip" "nat_eip" {
   domain = "vpc"
 }
 
-# Enlace: nat_gateway
 resource "aws_nat_gateway" "nat" {
   allocation_id = aws_eip.nat_eip.id
   subnet_id     = aws_subnet.public.id
@@ -108,7 +107,7 @@ ingress {
     protocol = "tcp"
     self = true
   }
-  
+
   egress {
     from_port   = 0
     to_port     = 0
