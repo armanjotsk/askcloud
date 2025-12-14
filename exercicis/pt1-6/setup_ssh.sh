@@ -1,24 +1,13 @@
 #!/bin/bash
 # setup_ssh.sh
 
-echo "Configurando entorno local..."
+# Mover claves
+mv bastion.pem ~/.ssh/
+mv private-*.pem ~/.ssh/
 
-# 1. Mover bastion key
-if [ -f "bastion.pem" ]; then
-    mv bastion.pem ~/.ssh/
-    chmod 400 ~/.ssh/bastion.pem
-fi
+# Permisos
+chmod 400 ~/.ssh/bastion.pem
+chmod 400 ~/.ssh/private-*.pem
 
-# 2. Mover private keys
-for f in private-*.pem; do
-    if [ -e "$f" ]; then
-        mv "$f" ~/.ssh/
-        chmod 400 ~/.ssh/"$f"
-    fi
-done
-
-# 3. Añadir configuración
-if [ -f "ssh_config_per_connect.txt" ]; then
-    cat ssh_config_per_connect.txt >> ~/.ssh/config
-    echo "Configuración SSH actualizada."
-fi
+# Config
+cat ssh_config_per_connect.txt >> ~/.ssh/config
